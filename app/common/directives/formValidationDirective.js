@@ -37,7 +37,7 @@
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
           ctrl.$validators.email = function(modelValue, viewValue) {
-            if (ctrl.$isEmpty(modelValue)) {
+            if (!ctrl.$dirty && ctrl.$isEmpty(modelValue)) {
               // Consider empty models to be valid
               return true;
             }
@@ -68,7 +68,7 @@
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
           ctrl.$validators.password = function(modelValue, viewValue) {
-            if (ctrl.$isEmpty(modelValue)) {
+            if (!ctrl.$dirty && ctrl.$isEmpty(modelValue)) {
               // Consider empty models to be valid unless requiredValidator is applied
               return true;
             }

@@ -31,21 +31,24 @@
     
     $scope.types = ['Admin', 'Driver'];
     
-    $scope.createUser = function() {
-      console.log($scope.userForm);
+    vm.createUser = function() {
+      angular.forEach($scope.userForm, function(field, fieldName) {
+        console.log(field, fieldName);
+        if (field && fieldName[0] !== '$') {
+          field.$setTouched();
+          field.$setDirty();
+          field.$validate();
+        }
+      });
+    
       if ($scope.userForm.$valid) {
         console.log('User created:', $scope.user);
-        // Here you would typically submit to your backend
         alert('User created successfully!');
       } else {
-        // Mark all fields as touched to trigger validation
-        angular.forEach($scope.userForm.$error, function(field) {
-          angular.forEach(field, function(errorField) {
-            errorField.$setTouched();
-          });
-        });
+        console.error('Validation errors:', $scope.userForm.$error);
       }
     };
+    
 
     function deleteUser(user) {
       $scope.IC.users = $scope.IC.users.filter(function (item) {

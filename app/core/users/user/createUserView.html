@@ -1,7 +1,7 @@
 <div class="header-users__list">
   <button class="button" ng-click="UsersListController.openModal()">Create User</button>
   <custom-modal footer-close="true" modal-title="Create new user" is-open="UsersListController.isModalOpen" close-modal="UsersListController.closeModal()">
-    <form name="userForm" novalidate ng-controller="UsersListController">
+    <form name="userForm" novalidate ng-controller="UsersListController as UsersListController">
       <!-- Username Field -->
       <custom-text-input 
         ng-model="user.username" 
@@ -45,11 +45,12 @@
           class="form-control" 
           ng-model="user.type" 
           name="type"
-          required="true">
+          required-validator
+        >
           <option value="" disabled selected>Select type</option>
           <option ng-repeat="type in types" value="{{type}}">{{type}}</option>
         </select>
-        <div class="error-message" ng-show="false">Type is required</div>
+        <div class="error-message">Type is required</div>
       </div>
       
       <!-- Password Field -->
