@@ -1,0 +1,109 @@
+:root {
+    --bg-color: #edf0f7;
+    --primary-text-color: #40424e;
+    --secondary-text-color: #a6a5ad;
+    --table-bg-color: #f4f5f9;
+    --primary-btn: #007bff;
+    --input-bg: #f2f6f9;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.header-users__list {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.user-management {
+    width: 100%;
+    margin: 50px;
+}
+
+.user-management__list {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-management__form {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    background-color: var(--primary-btn);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.user-table__container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 10px;
+    max-height: 600px;
+    border-radius: 12px;
+}
+.user-table {
+    width: 100%;
+    min-width: 600px;
+}
+
+.user-table th, 
+.user-table td {
+    padding: 8px;
+    text-align: left;
+    padding: 15px 30px;
+}
+
+.user-table th {
+    color: var(--secondary-text-color);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.user-table td {
+    color: var(--primary-text-color);
+    background-color: var(--table-bg-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.user-table thead {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 2;
+}
+
+.user-table tbody tr:not(:last-child) {
+    border-bottom: 3px solid white;
+}
+
+.user-table th {
+    background-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .user-management {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .user-management__form {
+        flex-direction: column;
+    }
+}
