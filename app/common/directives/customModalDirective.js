@@ -12,7 +12,8 @@
       scope: {
         modalTitle: '@',  // Title passed as an attribute
         isOpen: '=',      // Two-way binding for opening/closing the modal
-        closeModal: '&'   // Function to close the modal
+        closeModal: '&',   // Function to close the modal
+        footerClose: '@',
       },
       transclude: true,  // Enable transclusion to allow dynamic content
       template: `
@@ -23,7 +24,7 @@
               <button class="custom-close-button" ng-click="closeModal()">×</button>
             </div>
             <div class="custom-modal-body" ng-transclude></div>
-            <div class="custom-modal-footer">
+            <div class="custom-modal-footer" ng-show="!footerClose">
               <button class="button" ng-click="closeModal()">Close</button>
             </div>
           </div>

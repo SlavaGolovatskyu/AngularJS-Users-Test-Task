@@ -16,7 +16,6 @@
       .state('root', {
         abstract: true,
         url: '/',
-        views: {}
       })
       .state('root.users', {
         url: 'users',
@@ -34,16 +33,6 @@
             templateUrl: 'core/users/listView.html',
             controller: 'UsersListController',
             controllerAs: 'TLC'
-          }
-        }
-      })
-      .state('root.json', {
-        url: 'json',
-        views: {
-          'content@': {
-            templateUrl: 'core/json/jsonView.html',
-            controller: 'JsonController',
-            controllerAs: 'JC'
           }
         }
       })

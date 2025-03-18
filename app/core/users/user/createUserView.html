@@ -1,6 +1,6 @@
 <div class="header-users__list">
   <button class="button" ng-click="UsersListController.openModal()">Create User</button>
-  <custom-modal modal-title="Create new user" is-open="UsersListController.isModalOpen" close-modal="UsersListController.closeModal()">
+  <custom-modal footer-close="true" modal-title="Create new user" is-open="UsersListController.isModalOpen" close-modal="UsersListController.closeModal()">
     <form name="userForm" novalidate ng-controller="UsersListController">
       <!-- Username Field -->
       <custom-text-input 
@@ -73,7 +73,7 @@
       ></custom-password-input>
       
       <!-- Submit Button -->
-      <button class="btn-create" ng-click="UsersListController.createUser()">Create</button>
+      <button class="user-create_button button" ng-click="UsersListController.createUser()">Create</button>
     </form>
   </custom-modal>
 </div>

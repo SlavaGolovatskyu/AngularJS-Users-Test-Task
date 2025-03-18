@@ -68,24 +68,6 @@
   box-sizing: border-box;
 }
 
-.btn-create {
-  background-color: #1890ff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  display: block;
-  margin: 30px auto 0;
-  width: 150px;
-  text-align: center;
-}
-
-.btn-create:hover {
-  background-color: #096dd9;
-}
-
 select.form-control {
   appearance: none;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23888' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");

@@ -1,0 +1,10 @@
+.user-create_button {
+  font-size: 14px;
+  display: block;
+  margin: 30px auto 0;
+  text-align: center;
+}
+
+.user-create_button:hover {
+  background-color: #096dd9;
+}
