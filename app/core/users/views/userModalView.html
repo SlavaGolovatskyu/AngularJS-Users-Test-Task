@@ -95,6 +95,7 @@
       <!-- Username Field -->
       <custom-text-input 
         ng-model="editUser.username" 
+        field-read-only="true"
         name="username" 
         label="Username"
         required="true"
@@ -165,7 +166,7 @@
       <!-- Submit Button -->
       <div style="display: flex; justify-content: space-between;">
         <button class="button delete" ng-click="HeaderController.deleteUser(editUser.username)">Delete</button>
-        <button disabled="editUserForm.$invalid" class="button" ng-click="HeaderController.updateUser()">Save</button>
+        <button ng-disabled="HeaderController.editUserForm.$invalid" class="button" ng-click="HeaderController.updateUser()">Save</button>
       </div>
     </form>
   </custom-modal>

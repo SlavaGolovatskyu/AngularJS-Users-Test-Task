@@ -13,11 +13,13 @@
           fieldLabel: '@label',
           required: '@',
           placeholder: '@',
+          fieldReadOnly: '@'
         },
         template: `
           <div class="form-group">
             <label class="form-group__label" ng-if="fieldLabel">{{fieldLabel}}<span ng-if="required">*</span></label>
             <input type="text" 
+              ng-readonly="fieldReadOnly"
               class="form-control" 
               id="{{fieldName}}" 
               name="{{fieldName}}" 

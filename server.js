@@ -45,14 +45,15 @@ const validatePassword = (password) => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.
 const validateUserType = (type) => ['Admin', 'Driver'].includes(type);
 
 // Middleware for validation
-const validateUserData = (user) => {
+const validateUserData = (user, currentUsername = null) => {
   const { username, firstName, lastName, email, password, type } = user;
   
   if (!username || !firstName || !lastName || !email || !password || !type) {
     return 'All fields are required';
   }
   
-  if (users.some(existingUser => existingUser.username === username)) {
+  // Check if the username is being updated and validate only if it's different
+  if (currentUsername !== username && users.some(existingUser => existingUser.username === username)) {
     return 'User with such username already exists';
   }
   
@@ -97,7 +98,7 @@ app.put('/api/v1.0/users/:username', (req, res) => {
     return res.status(404).json({ error: 'User not found' });
   }
 
-  const validationError = validateUserData(req.body);
+  const validationError = validateUserData(req.body, username);
   if (validationError) {
     return res.status(400).json({ error: validationError });
   }

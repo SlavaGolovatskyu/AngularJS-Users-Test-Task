@@ -10,42 +10,32 @@
     const vm = this;
 
     vm.isCreateUserModalOpen = false;
-    vm.userForm = {};
-
     vm.isEditUserModalOpen = false;
+
+    vm.userForm = {};
     vm.editUserForm = {};
-
-    vm.users = [];
-
+    
     $scope.user = {};
     $scope.editUser = {};
-    
+
     $scope.types = ['Admin', 'Driver'];
 
     vm.openCreateUserModal = () => vm.isCreateUserModalOpen = true;
     vm.openEditUserModal = () => vm.isEditUserModalOpen = true;
 
-    vm.closeCreateUserModal = function () {
+    vm.closeCreateUserModal = () => {
       vm.isCreateUserModalOpen = false;
-      $scope.user = {}; // Reset the form
-
-      angular.forEach(vm.userForm, function(field, fieldName) {
-        if (field && fieldName[0] !== '$') {
-          field.$setPristine();
-          field.$setUntouched();
-          field.$validate();
-        }
-      });
-
-      vm.userForm.$setPristine();
-      vm.userForm.$setUntouched();
-    }
+      resetForm(vm.userForm, $scope.user);
+    };
 
     vm.closeEditUserModal = () => {
       vm.isEditUserModalOpen = false;
-      $scope.editUser = {}; // Reset the form
+      resetForm(vm.editUserForm, $scope.editUser);
+    };
 
-      angular.forEach(vm.editUserForm, function(field, fieldName) {
+    function resetForm(form, model) {
+      model = {}; // Reset the form model
+      angular.forEach(form, (field, fieldName) => {
         if (field && fieldName[0] !== '$') {
           field.$setPristine();
           field.$setUntouched();
@@ -53,33 +43,44 @@
         }
       });
 
-      vm.editUserForm.$setPristine();
-      vm.editUserForm.$setUntouched();
+      form.$setPristine();
+      form.$setUntouched();
     }
 
     vm.deleteUser = (username) => {
       usersService.deleteUser(username).then(vm.closeEditUserModal);
     };
     
-    vm.createUser = function() {
-      angular.forEach(vm.userForm, function(field, fieldName) {
+    vm.createUser = () => {
+      validateAndSubmitForm(vm.userForm, () => {
+        usersService.createUser($scope.user).then(vm.closeCreateUserModal);
+      });
+    };
+
+    vm.updateUser = () => {-
+      validateAndSubmitForm(vm.editUserForm, () => {
+        usersService.updateUser($scope.editUser).then(vm.closeEditUserModal);
+      });
+    };
+
+    function validateAndSubmitForm(form, submitCallback) {
+      angular.forEach(form, (field, fieldName) => {
         if (field && fieldName[0] !== '$') {
           field.$setDirty();
           field.$validate();
         }
       });
     
-      if (vm.userForm.$valid) {
-        usersService.createUser($scope.user).then(vm.closeCreateUserModal);
+      if (form.$valid) {
+        submitCallback();
       } else {
-        console.error('Validation errors:', vm.userForm.$error);
+        console.error('Validation errors:', form.$error);
       }
-    };
+    }
 
     $rootScope.$on('openEditUserModal', (event, data) => {
-      $scope.editUser = data;
+      $scope.editUser = { ...data };
       vm.openEditUserModal();
-      console.log('header controller', data);
-    })
+    });
   }
 })();
