@@ -137,6 +137,7 @@
           class="form-control" 
           ng-model="editUser.type" 
           name="type"
+          select-required
         >
           <option value="" disabled selected>Select type</option>
           <option ng-repeat="type in types" value="{{type}}">{{type}}</option>
@@ -160,7 +161,7 @@
         label="Repeat password" 
         required="true"
         placeholder="********"
-        match-with="user.password"
+        match-with="editUser.password"
         match-with-required="true"
       ></custom-password-input>
       
