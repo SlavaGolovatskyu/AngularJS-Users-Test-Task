@@ -35,7 +35,6 @@
       angular.forEach($scope.userForm, function(field, fieldName) {
         console.log(field, fieldName);
         if (field && fieldName[0] !== '$') {
-          field.$setTouched();
           field.$setDirty();
           field.$validate();
         }

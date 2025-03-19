@@ -6,12 +6,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>AngularJS</title>
-        <meta name="description" content="AngularJS Users">
+        <title>Users</title>
+        <meta name="description" content="Yaroslav Holovatskyu's AngularJS Test task" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.min.css">
         <link rel="stylesheet" href="assets/css/reset.css" />
         <link rel="stylesheet" href="assets/css/main.css">
         <link rel="stylesheet" href="assets/css/animate.css">
@@ -24,7 +25,7 @@
             <header data-ui-view="header"></header>
             <section data-ui-view="content" class="user-management__list"></section>
         </main>
-
+        <toaster-container></toaster-container>
         <!-- In production use:
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
         <script src="build/angularjs-template-x.x.x.min.js></script>
@@ -36,6 +37,7 @@
         <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/AngularJS-Toaster/toaster.min.js"></script>
         <!-- Application scripts: -->
         <script src="core/app.js"></script>
         <script src="core/app.routes.js"></script>

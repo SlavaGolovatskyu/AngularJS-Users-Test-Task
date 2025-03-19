@@ -12,7 +12,7 @@
     };
 
     function getUsers() {
-      return $http.get('assets/data/users.json')
+      return $http.get('api/v1.0/users')
         .then(getUsersComplete)
         .catch(getUsersFailed);
 

@@ -66,3 +66,9 @@
     max-width: 90%;
   }
 }
+
+@media (max-height: 800px) {
+  .custom-modal {
+    transform: scale(0.7);
+  }
+}
