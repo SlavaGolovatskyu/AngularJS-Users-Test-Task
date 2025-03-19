@@ -1,36 +1,14 @@
 (function () {
   'use strict';
 
-  angular.module('app.index', ['app.usersService'])
+  angular.module('app.index', [])
     .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['$rootScope', '$scope', '$state', '$log', 'usersService'];
+  IndexController.$inject = ['$rootScope', '$scope', '$state'];
 
-  function IndexController($rootScope, $scope, $state, $log, usersService) {
-    const vm = this;
-
-    vm.users = [];
-
-    retrieve();
-
+  function IndexController($rootScope, $scope, $state) {
     $scope.$on('showForbiddenPage', function () {
       $state.go('forbidden'); // Redirect to the 403 page
     });
-
-    $rootScope.$on('refetchUsers', retrieve);
-
-    function retrieve() {
-      return getUsers().then(function () {
-        $log.info('Retrieved users');
-      });
-    }
-
-    function getUsers() {
-      return usersService.getUsers()
-        .then(function (data) {
-          vm.users = data;
-          return vm.users;
-        });
-    }
   }
 })();

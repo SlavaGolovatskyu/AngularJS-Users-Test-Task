@@ -7,13 +7,19 @@
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
           ctrl.$validators.required = function(modelValue, viewValue) {
+            const errorElement = element.parent().parent().find('.error-message');
+
+            if (ctrl.$pristine) {
+              errorElement.hide();
+              element.removeClass('input-error');
+              return true;
+            }
+            
             if (!ctrl.$dirty) {
               return;
             }
 
             const isEmpty = typeof modelValue === 'string' ? !modelValue.trim()?.length : true;
-
-            const errorElement = element.parent().parent().find('.error-message');
 
             if (isEmpty) {
               errorElement.text('Field is required');
@@ -37,13 +43,19 @@
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
           ctrl.$validators.email = function(modelValue, viewValue) {
+            const errorElement = element.parent().parent().find('.error-message');
+
+            if (ctrl.$pristine) {
+              errorElement.hide();
+              element.removeClass('input-error');
+              return true;
+            }
+            
             if (!ctrl.$dirty && ctrl.$isEmpty(modelValue)) {
               // Consider empty models to be valid
               return true;
             }
 
-            const errorElement = element.parent().parent().find('.error-message');
-            
             if (EMAIL_REGEXP.test(viewValue)) {
               // Valid email
               errorElement.text('');
@@ -68,12 +80,18 @@
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
           ctrl.$validators.password = function(modelValue, viewValue) {
+            const errorElement = element.parent().parent().find('.error-message');
+
+            if (ctrl.$pristine) {
+              errorElement.hide();
+              element.removeClass('input-error');
+              return true;
+            }
+            
             if (!ctrl.$dirty && ctrl.$isEmpty(modelValue)) {
               // Consider empty models to be valid unless requiredValidator is applied
               return true;
             }
-
-            const errorElement = element.parent().parent().find('.error-message');
     
             if (PASSWORD_REGEXP.test(viewValue)) {
               // Valid password
@@ -100,12 +118,18 @@
         },
         link: function(scope, element, attrs, ctrl) {
           ctrl.$validators.passwordMatch = function(modelValue, viewValue) {
+            const errorElement = element.parent().parent().find('.error-message');
+
+            if (ctrl.$pristine) {
+              errorElement.hide();
+              element.removeClass('input-error');
+              return true;
+            }
+            
             if (ctrl.$isEmpty(modelValue) || ctrl.$isEmpty(scope.matchWith)) {
               // If either field is empty, we won't show a mismatch error
               return true;
             }
-
-            const errorElement = element.parent().parent().find('.error-message');
     
             if (modelValue === scope.matchWith) {
               // Passwords match

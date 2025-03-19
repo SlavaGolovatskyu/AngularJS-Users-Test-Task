@@ -41,41 +41,5 @@ describe("UsersListController", function () {
   });
 
   it("should delete element from users list", function () {
-    //scope.IC.users[0].done = true;
-
-    // vm.deleteUser();
-
-    // expect(scope.IC.users).toEqual([
-    //     {
-    //         "title": "Gym",
-    //         "done": false,
-    //         "type": {
-    //             "name": "Health",
-    //             "gico": "tint"
-    //         },
-    //         "estimates": 2,
-    //         "date": "12/11/2015"
-    //     },
-    //     {
-    //         "title": "Homework",
-    //         "done": false,
-    //         "type": {
-    //             "name": "Science",
-    //             "gico": "book"
-    //         },
-    //         "estimates": 4,
-    //         "date": "14/11/2015"
-    //     },
-    //     {
-    //         "title": "Meeting",
-    //         "done": false,
-    //         "type": {
-    //             "name": "Business",
-    //             "gico": "usd"
-    //         },
-    //         "estimates": 1,
-    //         "date": "15/11/2015"
-    //     }
-    // ]);
   });
 });

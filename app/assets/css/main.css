@@ -5,6 +5,7 @@
     --table-bg-color: #f4f5f9;
     --primary-btn: #007bff;
     --input-bg: #f2f6f9;
+    --error: #f44683;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
 .user-management {
     width: 100%;
     margin: 50px;
+    padding: 0 20px;
 }
 
 .user-management__list {
@@ -48,6 +50,16 @@ body {
     border-radius: 5px;
 }
 
+.button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.button.delete {
+    background-color: var(--error);
+}
+
 .user-table__container {
     width: 100%;
     overflow-x: auto;
@@ -55,6 +67,7 @@ body {
     max-height: 600px;
     border-radius: 12px;
 }
+
 .user-table {
     width: 100%;
     min-width: 600px;
@@ -79,7 +92,21 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+
+.user-table td:not(:first-child) {
     max-width: 200px;
+}
+
+.user-table__actions {
+    max-width: 40px;
+    padding: 15px 10px;
+}
+
+.user-table__actions svg {
+    cursor: pointer;
 }
 
 .user-table thead {
@@ -96,6 +123,10 @@ body {
 .user-table th {
     background-color: #ffffff;
 }
+
+button {
+    pointer-events: auto;
+  }
 
 @media (max-width: 768px) {
     .user-management {

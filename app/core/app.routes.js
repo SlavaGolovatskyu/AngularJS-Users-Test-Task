@@ -27,14 +27,14 @@
         url: '/list',
         views: {
           'header@': {
-            controller: 'UsersListController',
-            controllerAs: 'UsersListController',
-            templateUrl: 'core/users/user/createUserView.html'
+            controller: 'HeaderController',
+            controllerAs: 'HeaderController',
+            templateUrl: 'core/users/views/userModalView.html'
           },
           'content@': {
-            templateUrl: 'core/users/listView.html',
+            templateUrl: 'core/users/views/listView.html',
             controller: 'UsersListController',
-            controllerAs: 'TLC'
+            controllerAs: 'UsersListController'
           }
         }
       })

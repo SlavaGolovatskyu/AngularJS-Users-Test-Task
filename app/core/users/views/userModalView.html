@@ -1,0 +1,172 @@
+<div class="header-users__list">
+  <button
+    class="button"
+    ng-click="HeaderController.openCreateUserModal()"
+  >Create User</button>
+
+  <custom-modal
+    footer-close="true"
+    modal-title="Create new user"
+    is-open="HeaderController.isCreateUserModalOpen"
+    close-modal="HeaderController.closeCreateUserModal()"
+  >
+    <form name="HeaderController.userForm" novalidate>
+      <!-- Username Field -->
+      <custom-text-input 
+        ng-model="user.username" 
+        name="username" 
+        label="Username"
+        required="true"
+        placeholder="Enter username"
+      ></custom-text-input>
+      
+      <!-- First Name Field -->
+      <custom-text-input 
+        ng-model="user.firstName" 
+        name="firstName" 
+        label="First name" 
+        required="true"
+        placeholder="Enter first name"
+      ></custom-text-input>
+      
+      <!-- Last Name Field -->
+      <custom-text-input 
+        ng-model="user.lastName" 
+        name="lastName" 
+        label="Last name" 
+        required="true"
+        placeholder="Enter last name"
+      ></custom-text-input>
+      
+      <!-- Email Field -->
+      <custom-email-input 
+        ng-model="user.email" 
+        name="email" 
+        label="Email" 
+        required="true"
+        placeholder="example@domain.com"
+      ></custom-email-input>
+      
+      <!-- Type Field -->
+      <div class="form-group">
+        <label>Type<span>*</span></label>
+        <select 
+          class="form-control" 
+          ng-model="user.type" 
+          name="type"
+        >
+          <option value="" disabled selected>Select type</option>
+          <option ng-repeat="type in types" value="{{type}}">{{type}}</option>
+        </select>
+        <div class="error-message">Type is required</div>
+      </div>
+      
+      <!-- Password Field -->
+      <custom-password-input 
+        ng-model="user.password" 
+        name="password" 
+        label="Password" 
+        required="true"
+        placeholder="********"
+      ></custom-password-input>
+      
+      <!-- Repeat Password Field -->
+      <custom-password-input 
+        ng-model="user.repeatPassword" 
+        name="repeatPassword" 
+        label="Repeat password" 
+        required="true"
+        placeholder="********"
+        match-with="user.password"
+        match-with-required="true"
+      ></custom-password-input>
+      
+      <!-- Submit Button -->
+      <button
+        class="user-create_button button"
+        ng-click="HeaderController.createUser()"
+      >Create</button>
+    </form>
+  </custom-modal>
+
+  <!-- EDIT USER -->
+  <custom-modal footer-close="true" modal-title="{{ editUser.firstName + ' ' + editUser.lastName }}" is-open="HeaderController.isEditUserModalOpen" close-modal="HeaderController.closeEditUserModal()">
+    <form name="HeaderController.editUserForm" novalidate>
+      <!-- Username Field -->
+      <custom-text-input 
+        ng-model="editUser.username" 
+        name="username" 
+        label="Username"
+        required="true"
+        placeholder="Enter username"
+      ></custom-text-input>
+      
+      <!-- First Name Field -->
+      <custom-text-input 
+        ng-model="editUser.firstName" 
+        name="firstName" 
+        label="First name" 
+        required="true"
+        placeholder="Enter first name"
+      ></custom-text-input>
+      
+      <!-- Last Name Field -->
+      <custom-text-input 
+        ng-model="editUser.lastName" 
+        name="lastName" 
+        label="Last name" 
+        required="true"
+        placeholder="Enter last name"
+      ></custom-text-input>
+      
+      <!-- Email Field -->
+      <custom-email-input 
+        ng-model="editUser.email" 
+        name="email" 
+        label="Email" 
+        required="true"
+        placeholder="example@domain.com"
+      ></custom-email-input>
+      
+      <!-- Type Field -->
+      <div class="form-group">
+        <label>Type<span>*</span></label>
+        <select 
+          class="form-control" 
+          ng-model="editUser.type" 
+          name="type"
+        >
+          <option value="" disabled selected>Select type</option>
+          <option ng-repeat="type in types" value="{{type}}">{{type}}</option>
+        </select>
+        <div class="error-message">Type is required</div>
+      </div>
+      
+      <!-- Password Field -->
+      <custom-password-input 
+        ng-model="editUser.password" 
+        name="password" 
+        label="Password" 
+        required="true"
+        placeholder="********"
+      ></custom-password-input>
+      
+      <!-- Repeat Password Field -->
+      <custom-password-input 
+        ng-model="editUser.repeatPassword" 
+        name="repeatPassword" 
+        label="Repeat password" 
+        required="true"
+        placeholder="********"
+        match-with="user.password"
+        match-with-required="true"
+      ></custom-password-input>
+      
+      <!-- Submit Button -->
+      <div style="display: flex; justify-content: space-between;">
+        <button class="button delete" ng-click="HeaderController.deleteUser(editUser.username)">Delete</button>
+        <button disabled="editUserForm.$invalid" class="button" ng-click="HeaderController.updateUser()">Save</button>
+      </div>
+    </form>
+  </custom-modal>
+</div>

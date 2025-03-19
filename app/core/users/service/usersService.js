@@ -13,7 +13,8 @@
     const service = {
       getUsers: getUsers,
       createUser: createUser,
-      deleteUser: deleteUser
+      deleteUser: deleteUser,
+      updateUser: updateUser,
     };
     
     return service;
@@ -48,6 +49,17 @@
         .then(handleSuccess('User created successfully'))
         .catch(handleError);
     }
+
+    /**
+     * Updates a user
+     * @param {Object} data - User data
+     * @returns {Promise} Promise resolving after user creation
+     */
+    function updateUser(data) {
+      return $http.put(`${API_BASE}/${data.username}`, data)
+        .then(handleSuccess('User updated successfully'))
+        .catch(handleError);
+    } 
 
     /**
      * Deletes a user by username
