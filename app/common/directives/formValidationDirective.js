@@ -2,6 +2,47 @@
   "use strict";
 
   angular.module('app.formValidation.directive', [])
+    .directive('selectRequired', function() {
+      return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, ctrl) {
+          const errorElement = element.parent().find('.error-message');
+    
+          function setError(show, message = '') {
+            errorElement.text(message);
+            errorElement.toggle(show);
+            element.toggleClass('input-error', show);
+          }
+    
+          ctrl.$validators.selectRequired = function(modelValue, viewValue) {
+            if (ctrl.$pristine) {
+              setError(false); // Hide error if untouched
+              return true;
+            }
+    
+            if (modelValue && modelValue !== '') {
+              setError(false);
+              return true;
+            }
+    
+            setError(true, 'Please select an option');
+            return false;
+          };
+    
+          // Ensure the field is reset properly when the form is cleared
+          scope.$watch(attrs.ngModel, function(newValue) {
+            if (!newValue) {
+              ctrl.$setPristine();
+              ctrl.$setUntouched();
+              setError(false); // Hide error when reset
+            }
+          });
+    
+          // Hide the error initially
+          setError(false);
+        }
+      };
+    })
     .directive('requiredValidator', function() {
       return {
         require: 'ngModel',
@@ -11,17 +52,18 @@
 
             if (ctrl.$pristine) {
               errorElement.hide();
-              element.removeClass('input-error');
+              element.toggleClass('input-error', false);
               return true;
             }
             
+            console.log(ctrl);
             if (!ctrl.$dirty) {
               return;
             }
 
-            const isEmpty = typeof modelValue === 'string' ? !modelValue.trim()?.length : true;
+            const value = modelValue?.trim()?.length;
 
-            if (isEmpty) {
+            if (!value) {
               errorElement.text('Field is required');
               errorElement.show();
               element.toggleClass('input-error', true);

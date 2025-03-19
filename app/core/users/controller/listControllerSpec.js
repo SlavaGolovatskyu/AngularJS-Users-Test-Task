@@ -9,8 +9,7 @@ describe("UsersListController", function () {
 
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    scope.IC = {};
-    scope.IC.users = [
+    scope.users = [
       { "username": "jdoe1990", "firstName": "John", "lastName": "Doe", "email": "johndoe@mail.com", "type": "User" },
       { "username": "asmith1985", "firstName": "Alice", "lastName": "Smith", "email": "alice.smith@mail.com", "type": "User" },
       { "username": "bwilson92", "firstName": "Bob", "lastName": "Wilson", "email": "bob.wilson@mail.com", "type": "Administrator" },

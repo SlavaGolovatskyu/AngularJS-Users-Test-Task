@@ -54,11 +54,12 @@
           class="form-control" 
           ng-model="user.type" 
           name="type"
+          select-required
         >
           <option value="" disabled selected>Select type</option>
           <option ng-repeat="type in types" value="{{type}}">{{type}}</option>
         </select>
-        <div class="error-message">Type is required</div>
+        <div class="error-message"></div>
       </div>
       
       <!-- Password Field -->

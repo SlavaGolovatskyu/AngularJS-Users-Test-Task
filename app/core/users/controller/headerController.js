@@ -4,9 +4,9 @@
   angular.module('app.header', ['ngAnimate', 'app.usersService'])
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$rootScope', '$log', '$scope', 'usersService'];
+  HeaderController.$inject = ['$rootScope', '$timeout', '$scope', 'usersService'];
 
-  function HeaderController($rootScope, $log, $scope, usersService) {
+  function HeaderController($rootScope, $timeout, $scope, usersService) {
     const vm = this;
 
     vm.isCreateUserModalOpen = false;
@@ -34,7 +34,7 @@
     };
 
     function resetForm(form, model) {
-      model = {}; // Reset the form model
+      angular.copy({}, model);
       angular.forEach(form, (field, fieldName) => {
         if (field && fieldName[0] !== '$') {
           field.$setPristine();

@@ -27,7 +27,7 @@
               placeholder="{{placeholder}}"
               required-validator="required"
             />
-            <div class="error-message">{{errorMessage}}</div>
+            <div class="error-message"></div>
           </div>
         `,
         link: function(scope, element, attrs, ctrl) {}
@@ -60,7 +60,7 @@
                 email-validator
               />
             </div>
-            <div class="error-message">{{errorMessage}}</div>
+            <div class="error-message"></div>
           </div>
         `,
         link: function(scope, element, attrs, ctrl) {}
@@ -94,7 +94,7 @@
               password-match-validator="{{matchWithRequired}}"
               match-with="matchWith"
             />
-            <div class="error-message">{{errorMessage}}</div>
+            <div class="error-message"></div>
           </div>
         `,
         link: function(scope, element, attrs, ctrl) {}
