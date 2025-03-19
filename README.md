@@ -1,3 +1,7 @@
+![image](https://github.com/user-attachments/assets/142fd682-3c54-476d-811e-279c89742efe)
+![image](https://github.com/user-attachments/assets/8392cf67-3f49-4f36-88e8-27d16b8f48e4)
+![image](https://github.com/user-attachments/assets/ff3c46fc-d3d1-4016-82b8-aa982f543c44)
+
 ### Install Dependencies
 
 Firstly, make sure you have bower, grunt-cli and karma-cli installed globally. To do this run:
