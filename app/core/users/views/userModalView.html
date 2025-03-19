@@ -10,7 +10,7 @@
     is-open="HeaderController.isCreateUserModalOpen"
     close-modal="HeaderController.closeCreateUserModal()"
   >
-    <form name="HeaderController.userForm" novalidate>
+    <form name="HeaderController.userForm" novalidate class="user-create__form">
       <!-- Username Field -->
       <custom-text-input 
         ng-model="user.username" 
@@ -92,7 +92,7 @@
 
   <!-- EDIT USER -->
   <custom-modal footer-close="true" modal-title="{{ editUser.firstName + ' ' + editUser.lastName }}" is-open="HeaderController.isEditUserModalOpen" close-modal="HeaderController.closeEditUserModal()">
-    <form name="HeaderController.editUserForm" novalidate>
+    <form name="HeaderController.editUserForm" novalidate class="user-edit__form ">
       <!-- Username Field -->
       <custom-text-input 
         ng-model="editUser.username" 

@@ -56,7 +56,6 @@
               return true;
             }
             
-            console.log(ctrl);
             if (!ctrl.$dirty) {
               return;
             }

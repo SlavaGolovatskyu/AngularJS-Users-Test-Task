@@ -51,9 +51,7 @@
   cursor: pointer;
 }
 
-.custom-modal-body {
-  margin: 20px 0;
-}
+.custom-modal-body {}
 
 .custom-modal-footer {
   text-align: right;
