@@ -10,8 +10,8 @@
             if (!ctrl.$dirty) {
               return;
             }
-            
-            const isEmpty = !!!modelValue?.trim();
+
+            const isEmpty = typeof modelValue === 'string' ? modelValue.trim() : true;
 
             const errorElement = element.parent().parent().find('.error-message');
 

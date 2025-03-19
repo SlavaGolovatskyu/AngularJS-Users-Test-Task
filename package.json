@@ -7,7 +7,7 @@
     "author": "",
     "repository": {
         "type": "git",
-        "url": "https://github.com/SlavaGolovatskyu/AngularJS-Users-Test-Task.git"
+        "url": "https://github.com/pamigomp/angularjs-template.git"
     },
     "main": "server.js",
     "scripts": {
@@ -24,8 +24,8 @@
         "protractor": "grunt protractor"
     },
     "dependencies": {
-        "angularjs-toaster": "^3.0.0",
         "bower": "^1.7.9",
+        "cors": "^2.8.5",
         "express": "^4.14.0"
     },
     "devDependencies": {

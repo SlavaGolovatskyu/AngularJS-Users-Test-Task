@@ -87,7 +87,6 @@
               name="{{fieldName}}" 
               ng-model="fieldModel" 
               placeholder="{{placeholder}}"
-              ng-class="{'input-error': hasError}" 
               ng-required="required"
               password-validator
               password-match-validator="{{matchWithRequired}}"

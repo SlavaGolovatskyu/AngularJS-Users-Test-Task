@@ -11,7 +11,7 @@
     $urlRouterProvider.when('/', '/users/list');
     $urlRouterProvider.when('/users', '/users/list');
     $urlRouterProvider.when('/users/', '/users/list');
-    $urlRouterProvider.otherwise('/404');
+    $urlRouterProvider.otherwise('/not-found');
     $stateProvider
       .state('root', {
         abstract: true,
@@ -37,8 +37,8 @@
         }
       })
       // 403 Forbidden
-      .state('403', {
-        url: '/403',
+      .state('forbidden', {
+        url: '/forbidden',
         views: {
           'content@': {
             templateUrl: 'core/errors/403.html'
@@ -46,8 +46,8 @@
         }
       })
       // 404 Not Found
-      .state('404', {
-        url: '/404',
+      .state('notFound', {
+        url: '/not-found',
         views: {
           'content@': {
             templateUrl: 'core/errors/404.html'

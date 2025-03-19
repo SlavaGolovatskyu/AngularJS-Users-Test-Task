@@ -1,8 +1,19 @@
+
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-require('dotenv').config();
+app.use(express.static(__dirname + '/app'));
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  if (!req.headers.referer || !req.headers.referer.startsWith(process.env.API_URL)) {
+    return res.status(403).json({ error: 'Access forbidden' });
+  }
+  next();
+});
 
 // In-memory user data
 let users = [
@@ -27,8 +38,6 @@ let users = [
   { "username": "rlee80", "firstName": "Rachel", "lastName": "Lee", "email": "rachel.l@mail.com", "type": "User" },
   { "username": "scooper78", "firstName": "Samuel", "lastName": "Cooper", "email": "samuel.c@mail.com", "type": "Administrator" }
 ];
-
-app.use(bodyParser.json());
 
 // Validation Functions
 const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
@@ -63,12 +72,12 @@ const validateUserData = (user) => {
 };
 
 // 1) Get list of users
-app.get('api/v1.0/users', (req, res) => {
+app.get('/api/v1.0/users', (req, res) => {
   res.json(users);
 });
 
 // 2) Create a new user
-app.post('api/v1.0/users', (req, res) => {
+app.post('/api/v1.0/users', (req, res) => {
   const validationError = validateUserData(req.body);
   if (validationError) {
     return res.status(400).json({ error: validationError });
@@ -80,7 +89,7 @@ app.post('api/v1.0/users', (req, res) => {
 });
 
 // 3) Update an existing user
-app.put('api/v1.0/users/:username', (req, res) => {
+app.put('/api/v1.0/users/:username', (req, res) => {
   const username = req.params.username;
   const userIndex = users.findIndex(user => user.username === username);
   
@@ -98,7 +107,7 @@ app.put('api/v1.0/users/:username', (req, res) => {
 });
 
 // 4) Delete a user
-app.delete('api/v1.0/users/:username', (req, res) => {
+app.delete('/api/v1.0/users/:username', (req, res) => {
   const username = req.params.username;
   const userIndex = users.findIndex(user => user.username === username);
   

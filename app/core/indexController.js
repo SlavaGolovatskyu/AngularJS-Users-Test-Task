@@ -4,9 +4,9 @@
   angular.module('app.index', ['app.usersService'])
     .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['$rootScope', '$log', 'usersService'];
+  IndexController.$inject = ['$rootScope', '$scope', '$state', '$log', 'usersService'];
 
-  function IndexController($rootScope, $log, usersService) {
+  function IndexController($rootScope, $scope, $state, $log, usersService) {
     const vm = this;
 
     vm.users = [];
@@ -20,6 +20,10 @@
     vm.closeModal = function () {
       $rootScope.$broadcast('closeModal');
     };
+
+    $scope.$on('showForbiddenPage', function () {
+      $state.go('forbidden'); // Redirect to the 403 page
+    });
 
     function retrieve() {
       return getUsers().then(function () {

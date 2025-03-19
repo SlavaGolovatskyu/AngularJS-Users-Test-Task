@@ -79,7 +79,7 @@ describe('AngularJS Users', function () {
 
     //         expect(todosListPage.isRowForNamePresent(todoName)).toBeTruthy();
     //     });
-    // });
+    });
 
     describe('json', function () {
         var jsonPage = require('./pages/jsonPage.js');
