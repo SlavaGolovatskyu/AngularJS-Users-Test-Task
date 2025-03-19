@@ -13,17 +13,11 @@
 
     retrieve();
 
-    vm.openModal = function () {
-      $rootScope.$broadcast('openModal');
-    };
-
-    vm.closeModal = function () {
-      $rootScope.$broadcast('closeModal');
-    };
-
     $scope.$on('showForbiddenPage', function () {
       $state.go('forbidden'); // Redirect to the 403 page
     });
+
+    $rootScope.$on('refetchUsers', retrieve);
 
     function retrieve() {
       return getUsers().then(function () {

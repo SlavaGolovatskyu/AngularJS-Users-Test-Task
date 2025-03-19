@@ -11,7 +11,7 @@
               return;
             }
 
-            const isEmpty = typeof modelValue === 'string' ? modelValue.trim() : true;
+            const isEmpty = typeof modelValue === 'string' ? !modelValue.trim()?.length : true;
 
             const errorElement = element.parent().parent().find('.error-message');
 

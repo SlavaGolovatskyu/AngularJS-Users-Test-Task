@@ -4,9 +4,11 @@
   angular.module('app')
     .config(config);
 
-  config.$inject = ['$stateProvider', '$urlRouterProvider'];
+  config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider'];
 
-  function config($stateProvider, $urlRouterProvider) {
+  function config($stateProvider, $locationProvider, $urlRouterProvider) {
+    $locationProvider.hashPrefix('');
+
     $urlRouterProvider.when('', '/users/list');
     $urlRouterProvider.when('/', '/users/list');
     $urlRouterProvider.when('/users', '/users/list');

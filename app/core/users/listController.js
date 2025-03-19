@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  angular.module('app.users.list', ['ngAnimate'])
+  angular.module('app.users.list', ['ngAnimate', 'app.usersService'])
     .controller('UsersListController', UsersListController);
 
-  UsersListController.$inject = ['$rootScope', '$scope'];
+  UsersListController.$inject = ['$rootScope', '$scope', 'usersService'];
 
-  function UsersListController($rootScope, $scope) {
+  function UsersListController($rootScope, $scope, usersService) {
     const vm = this;
 
-    vm.deleteUser = deleteUser;
+    vm.deleteUser = usersService.deleteUser;
 
     vm.isModalOpen = false;
     vm.openModal = function () {
@@ -41,18 +41,10 @@
       });
     
       if ($scope.userForm.$valid) {
-        console.log('User created:', $scope.user);
-        alert('User created successfully!');
+        usersService.createUser($scope.user)
       } else {
         console.error('Validation errors:', $scope.userForm.$error);
       }
     };
-    
-
-    function deleteUser(user) {
-      $scope.IC.users = $scope.IC.users.filter(function (item) {
-        return user.username !== item.username;
-      });
-    }
   }
 })();

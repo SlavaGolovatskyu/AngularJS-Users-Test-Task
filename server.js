@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
 
+// Forbids a user to go to endpoints by changing link in the browser
 app.use((req, res, next) => {
   if (!req.headers.referer || !req.headers.referer.startsWith(process.env.API_URL)) {
     return res.status(403).json({ error: 'Access forbidden' });
@@ -46,14 +47,15 @@ const validateUserType = (type) => ['Admin', 'Driver'].includes(type);
 
 // Middleware for validation
 const validateUserData = (user) => {
-  const { username, firstName, lastName, email, password, user_type } = user;
+  console.log('USER ', user);
+  const { username, firstName, lastName, email, password, type } = user;
   
-  if (!username || !firstName || !lastName || !email || !password || !user_type) {
+  if (!username || !firstName || !lastName || !email || !password || !type) {
     return 'All fields are required';
   }
   
   if (users.some(existingUser => existingUser.username === username)) {
-    return 'Username must be unique';
+    return 'User with such username already exists';
   }
   
   if (!validateEmail(email)) {
@@ -64,7 +66,7 @@ const validateUserData = (user) => {
     return 'Password must be at least 8 characters long, and contain at least one letter and one number';
   }
 
-  if (!validateUserType(user_type)) {
+  if (!validateUserType(type)) {
     return 'User type must be either "Admin" or "Driver"';
   }
 

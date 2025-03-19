@@ -55,8 +55,8 @@
         "selenium-webdriver": "^2.53.2"
     },
     "engines": {
-        "node": "^4.4.6",
-        "npm": "^2.15.5"
+        "node": "16.0.0",
+        "npm": "7.0.0"
     },
     "private": false
 }
